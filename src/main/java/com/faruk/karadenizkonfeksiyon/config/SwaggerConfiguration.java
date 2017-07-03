@@ -5,7 +5,6 @@
  */
 package com.faruk.karadenizkonfeksiyon.config;
 
-import com.google.common.base.Predicates;
 import io.swagger.annotations.SwaggerDefinition;
 import java.awt.print.Pageable;
 import java.util.UUID;
