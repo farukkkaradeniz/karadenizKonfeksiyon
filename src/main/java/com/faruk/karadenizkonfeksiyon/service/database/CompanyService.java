@@ -28,4 +28,6 @@ public interface CompanyService {
     
     public List<Company> getAllRecordsFromDb();
     
+    public List<Company> findAllLikeCompanyName(String companyName);
+    
 }

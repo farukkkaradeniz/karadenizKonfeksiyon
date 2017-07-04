@@ -32,7 +32,7 @@ import org.junit.Test;
  */
 public class WeeklySummaryTest {
     
-    String filePath = "/Users/Faruk/Downloads/BELGELER-1/konfeksiyon/ESKİLER/yapılan işler/YILLIK YAPILAN İŞLER/2005'de  yapılan  iş/2005 ARALIK/23,12,2005.xls";
+    String filePath = "C:\\Users\\Faruk-pc\\Downloads\\05,09,2014\\BELGELER\\konfeksiyon\\ESKİLER\\yapılan işler\\YILLIK YAPILAN İŞLER\\2005'de  yapılan  iş\\2005 ARALIK\\23,12,2005.xls";
     String date = "2005-07-29";
     ZonedDateTimeFormatterUtil dateTimeFormatterUtil = new ZonedDateTimeFormatterUtil();
     
@@ -178,6 +178,7 @@ public class WeeklySummaryTest {
     }
     
     @Test
+    @Ignore
     public void getRemainingBalances() throws FileNotFoundException, IOException {
         
         org.apache.poi.hssf.record.crypto.Biff8EncryptionKey.setCurrentUserPassword("1350");
@@ -197,7 +198,7 @@ public class WeeklySummaryTest {
             List<Cell> cellList = IteratorUtils.toList(rowList.get(i).cellIterator());
             RemainingBalance remainingBalance = new RemainingBalance();
             
-            for (int j = 0; j < 2; j++) {
+            for (int j = 0; j < 4; j++) {
                 
                 if (cellList.get(j).getCellType() == Cell.CELL_TYPE_STRING) {
                     remainingBalance = setRemainingBalanceValues(cellList.get(j).getStringCellValue(), j, cellList.get(j).getCellType(), remainingBalance);
@@ -225,7 +226,7 @@ public class WeeklySummaryTest {
                 remainingBalance.setCompany(new Company(data));
                 break;
             }
-            case 1: {
+            case 3: {
                 if (cellType == Cell.CELL_TYPE_NUMERIC) {
                     remainingBalance.setPrice(BigDecimal.valueOf(Double.valueOf(data)));
                 }else if (cellType == Cell.CELL_TYPE_STRING) {

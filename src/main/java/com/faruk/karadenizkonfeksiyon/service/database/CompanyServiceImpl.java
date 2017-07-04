@@ -75,5 +75,15 @@ public class CompanyServiceImpl implements CompanyService {
         return company;
         
     }
+
+    @Override
+    public List<Company> findAllLikeCompanyName(String companyName) {
+        
+        Session session = entityManager.unwrap(Session.class);
+        
+        return session.createCriteria(Company.class)
+                .add(Restrictions.like("companyName", companyName)).list();
+        
+    }
     
 }
