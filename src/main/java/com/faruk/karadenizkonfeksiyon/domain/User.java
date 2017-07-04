@@ -5,6 +5,7 @@
  */
 package com.faruk.karadenizkonfeksiyon.domain;
 
+import com.faruk.karadenizkonfeksiyon.builder.UserBuilder;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

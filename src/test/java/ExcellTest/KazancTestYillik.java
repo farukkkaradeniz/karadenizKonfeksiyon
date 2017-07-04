@@ -18,6 +18,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -26,6 +27,7 @@ import static org.junit.Assert.*;
 public class KazancTestYillik {
 
     @Test
+    @Ignore
     public void excellTest() {
         try {
             org.apache.poi.hssf.record.crypto.Biff8EncryptionKey.setCurrentUserPassword("1350");

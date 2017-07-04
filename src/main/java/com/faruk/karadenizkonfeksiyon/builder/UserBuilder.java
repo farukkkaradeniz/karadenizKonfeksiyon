@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.faruk.karadenizkonfeksiyon.domain;
+package com.faruk.karadenizkonfeksiyon.builder;
 
+import com.faruk.karadenizkonfeksiyon.domain.User;
 import com.faruk.karadenizkonfeksiyon.domain.User;
 import com.faruk.karadenizkonfeksiyon.domain.User;
 
@@ -14,15 +15,15 @@ import com.faruk.karadenizkonfeksiyon.domain.User;
  */
 public class UserBuilder {
 
-    Long id;
+    public Long id;
 
-    String name;
+    public String name;
 
-    String lastName;
+    public String lastName;
 
-    String password;
+    public String password;
 
-    String userName;
+    public String userName;
 
     public UserBuilder id(Long id) {
 

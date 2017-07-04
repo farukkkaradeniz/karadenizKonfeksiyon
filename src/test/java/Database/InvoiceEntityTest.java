@@ -43,6 +43,7 @@ public class InvoiceEntityTest {
     private InvoiceService invoiceService;
 
     @Test
+    @Ignore
     public void testBeetweenDates() {
 
         List<Invoice> service = invoiceService.findAllBeetweenDates(zonedDateTimeFormatterUtil.convertToZonedDateTime("2017-06-01"), zonedDateTimeFormatterUtil.convertToZonedDateTime("2017-07-01"));

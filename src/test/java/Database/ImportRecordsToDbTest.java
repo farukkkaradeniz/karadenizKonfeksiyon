@@ -72,6 +72,7 @@ public class ImportRecordsToDbTest {
     }
 
     @Test
+    @Ignore
     public void insertExpense() {
 
         List<Employee> employess = employeeRepository.findAllByEnabled(Boolean.TRUE);
@@ -102,6 +103,7 @@ public class ImportRecordsToDbTest {
     }
 
     @Test
+    @Ignore
     public void insertInvoice() {
 
         Invoice invoice = new Invoice();

@@ -44,6 +44,13 @@ public class Company implements Serializable{
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "company")
     private Set<RemainingBalance> remainingBalances = new HashSet<>();
 
+    public Company() {
+    }
+
+    public Company(String companyName) {
+        this.companyName = companyName;
+    }
+    
     public Long getId() {
         return id;
     }

@@ -36,6 +36,7 @@ public class ZonedDateTimeTest {
     }
 
     @Test
+    @Ignore
     public void testDate() {
 
         String startDate = "" + ZonedDateTime.now().getYear() + "-" + Month.JANUARY.getValue() + "-" + "01";
