@@ -6,6 +6,7 @@
 package com.faruk.karadenizkonfeksiyon.repository;
 
 import com.faruk.karadenizkonfeksiyon.domain.Employee;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +14,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Faruk
  */
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
+
+    public Employee findOneByEnabled(Long id, Boolean enabled);
+
+    public List<Employee> findAllByEnabled(Boolean enabled);
     
 }

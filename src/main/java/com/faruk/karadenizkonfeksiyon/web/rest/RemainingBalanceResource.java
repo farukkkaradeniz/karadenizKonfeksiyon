@@ -6,7 +6,7 @@
 package com.faruk.karadenizkonfeksiyon.web.rest;
 
 import com.faruk.karadenizkonfeksiyon.domain.RemainingBalance;
-import com.faruk.karadenizkonfeksiyon.service.RemainingBalanceService;
+import com.faruk.karadenizkonfeksiyon.service.database.RemainingBalanceService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

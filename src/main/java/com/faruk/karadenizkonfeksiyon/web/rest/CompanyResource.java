@@ -6,8 +6,8 @@
 package com.faruk.karadenizkonfeksiyon.web.rest;
 
 import com.faruk.karadenizkonfeksiyon.domain.Company;
-import com.faruk.karadenizkonfeksiyon.service.CompanyService;
-import com.faruk.karadenizkonfeksiyon.service.GenericDatabaseServiceImpl;
+import com.faruk.karadenizkonfeksiyon.service.database.CompanyService;
+import com.faruk.karadenizkonfeksiyon.service.database.GenericDatabaseServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

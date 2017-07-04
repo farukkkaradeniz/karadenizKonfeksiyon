@@ -6,7 +6,7 @@
 package com.faruk.karadenizkonfeksiyon.web.rest;
 
 import com.faruk.karadenizkonfeksiyon.domain.Expenses;
-import com.faruk.karadenizkonfeksiyon.service.ExpensesService;
+import com.faruk.karadenizkonfeksiyon.service.database.ExpensesService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

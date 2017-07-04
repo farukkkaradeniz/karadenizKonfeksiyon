@@ -5,8 +5,10 @@
  */
 package com.faruk.karadenizkonfeksiyon.domain;
 
+import com.faruk.karadenizkonfeksiyon.builder.ExpenseBuilder;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,18 @@ public class Expenses implements Serializable{
     
     @Column(name = "price")
     private BigDecimal price;
+    
+    private ZonedDateTime expenseDate;
+    
+    public Expenses(){
+    }
+
+    public Expenses(ExpenseBuilder expenseBuilder) {
+        this.description = expenseBuilder.description;
+        this.expenseDate = expenseBuilder.expenseDate;
+        this.price = expenseBuilder.price;
+        this.expenseType = expenseBuilder.expenseType;
+    }
 
     public Long getId() {
         return id;
@@ -63,6 +77,14 @@ public class Expenses implements Serializable{
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public ZonedDateTime getExpenseDate() {
+        return expenseDate;
+    }
+
+    public void setExpenseDate(ZonedDateTime expenseDate) {
+        this.expenseDate = expenseDate;
     }
     
 }

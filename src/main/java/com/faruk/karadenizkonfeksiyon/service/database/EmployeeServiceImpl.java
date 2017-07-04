@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.faruk.karadenizkonfeksiyon.service;
+package com.faruk.karadenizkonfeksiyon.service.database;
 
 import com.faruk.karadenizkonfeksiyon.domain.Employee;
 import com.faruk.karadenizkonfeksiyon.repository.EmployeeRepository;
@@ -39,12 +39,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByEnabled(true);
     }
 
     @Override
     public Employee findOneById(Long id) {
-        return employeeRepository.findOne(id);
+        return employeeRepository.findOneByEnabled(id,true);
     }
     
 }

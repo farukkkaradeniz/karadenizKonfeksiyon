@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.faruk.karadenizkonfeksiyon.repository;
+package com.faruk.karadenizkonfeksiyon.service.database;
 
 import com.faruk.karadenizkonfeksiyon.domain.ProfitPerMonth;
-import java.io.Serializable;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author Faruk-pc
+ * @author Faruk
  */
-public interface ProfitPerMonthRepository extends JpaRepository<ProfitPerMonth, Long> {
+public interface ProfitPerMonthService {
+    
+    public ProfitPerMonth save(ProfitPerMonth profitPerMonth);
     
 }

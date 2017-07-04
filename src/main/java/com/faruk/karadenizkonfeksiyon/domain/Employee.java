@@ -35,6 +35,8 @@ public class Employee implements Serializable{
     
     @Column(name = "shift_salary")
     private BigDecimal shiftSalary;
+    
+    private Boolean enabled;
 
     public Long getId() {
         return id;
@@ -74,6 +76,14 @@ public class Employee implements Serializable{
 
     public void setShiftSalary(BigDecimal shiftSalary) {
         this.shiftSalary = shiftSalary;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
     
 }

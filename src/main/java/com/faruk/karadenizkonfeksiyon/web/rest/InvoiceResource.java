@@ -6,10 +6,10 @@
 package com.faruk.karadenizkonfeksiyon.web.rest;
 
 import com.faruk.karadenizkonfeksiyon.domain.Invoice;
-import com.faruk.karadenizkonfeksiyon.service.CompanyService;
-import com.faruk.karadenizkonfeksiyon.service.GenericDatabaseService;
-import com.faruk.karadenizkonfeksiyon.service.GenericDatabaseServiceImpl;
-import com.faruk.karadenizkonfeksiyon.service.InvoiceService;
+import com.faruk.karadenizkonfeksiyon.service.database.CompanyService;
+import com.faruk.karadenizkonfeksiyon.service.database.GenericDatabaseService;
+import com.faruk.karadenizkonfeksiyon.service.database.GenericDatabaseServiceImpl;
+import com.faruk.karadenizkonfeksiyon.service.database.InvoiceService;
 import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

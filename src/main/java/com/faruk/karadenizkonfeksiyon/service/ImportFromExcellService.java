@@ -82,6 +82,12 @@ public class ImportFromExcellService {
                     } else if (nextCell.getCellType() == Cell.CELL_TYPE_STRING) {
                         System.out.println("asd");
                         cellValueType = nextCell.getStringCellValue();
+                    } else if (nextCell.getCellType() == Cell.CELL_TYPE_BLANK) {
+                        if (cellValueType.equals("GELİR")) {
+                            gelirler.add(BigDecimal.valueOf(0.00));
+                        } else if (cellValueType.equals("GİDER")) {
+                            giderler.add(BigDecimal.valueOf(0.00));
+                        }
                     }
 
                 }

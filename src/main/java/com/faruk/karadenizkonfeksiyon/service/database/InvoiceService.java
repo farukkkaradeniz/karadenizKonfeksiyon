@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.faruk.karadenizkonfeksiyon.service;
+package com.faruk.karadenizkonfeksiyon.service.database;
 
 import com.faruk.karadenizkonfeksiyon.domain.Invoice;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -27,6 +28,8 @@ public interface InvoiceService {
     public List<Invoice> findAllByCompanyId(Long companyId);
     
     public List<Invoice> findAll();
+    
+    public List<Invoice> findAllBeetweenDates(ZonedDateTime startDate,ZonedDateTime endDate);
     
     
 }

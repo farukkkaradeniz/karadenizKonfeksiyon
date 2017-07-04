@@ -1,0 +1,24 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.faruk.karadenizkonfeksiyon.service.database;
+
+import com.faruk.karadenizkonfeksiyon.domain.ProfitPerMonth;
+import com.faruk.karadenizkonfeksiyon.repository.ProfitPerMonthRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProfitPerMonthServiceImpl implements ProfitPerMonthService {
+    
+    @Autowired
+    private ProfitPerMonthRepository profitPerMonthRepository;
+
+    @Override
+    public ProfitPerMonth save(ProfitPerMonth profitPerMonth) {
+        return profitPerMonthRepository.save(profitPerMonth);
+    }
+    
+}
