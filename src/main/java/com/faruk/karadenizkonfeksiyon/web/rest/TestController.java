@@ -58,15 +58,22 @@ public class TestController {
 
     @GetMapping("/test/importexcell")
     public void importData() {
-        importFrom2005();
-        importFrom2006();
-        importFrom2007("2007'de yapılan iş");
-        importFrom2007("2008  de yapılan iş");
-        importFrom2007("2009  de yapılan iş");
-        importFrom2007("2010 YAPILAN İŞ");
-        importFrom2007("2011YAPILAN İŞ");
-        importFrom2007("2012YAPILAN İŞ");
-        importFrom2007("2013YAPILAN İŞ");
+//        importFrom2005();
+//        importFrom2006();
+//        importFrom2007("2007'de yapılan iş");
+//        importFrom2007("2008  de yapılan iş");
+//        importFrom2007("2009  de yapılan iş");
+//        importFrom2007("2010 YAPILAN İŞ");
+//        importFrom2007("2011YAPILAN İŞ");
+//        importFrom2007("2012YAPILAN İŞ");
+//        importFrom2007("2013YAPILAN İŞ");
+    }
+    
+    @GetMapping("/test/importcompany")
+    public void importFromCompanySummary(){
+    
+        excellService.importFromCompanySummery("/Users/Faruk/Downloads/BELGELER-1/konfeksiyon/ESKİLER/FİRMALAR2012/MEBA.xls");
+        
     }
 
     public void importFrom2005() {

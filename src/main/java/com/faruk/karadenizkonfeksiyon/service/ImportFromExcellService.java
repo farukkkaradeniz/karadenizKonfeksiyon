@@ -17,10 +17,10 @@ import com.faruk.karadenizkonfeksiyon.service.database.ExpensesService;
 import com.faruk.karadenizkonfeksiyon.service.database.InvoiceService;
 import com.faruk.karadenizkonfeksiyon.service.database.RemainingBalanceService;
 import com.faruk.karadenizkonfeksiyon.util.BigDecimalUtil;
+import com.faruk.karadenizkonfeksiyon.util.ExcellUtill;
 import com.faruk.karadenizkonfeksiyon.util.ZonedDateTimeFormatterUtil;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Month;
@@ -160,6 +160,53 @@ public class ImportFromExcellService {
                 getExpensesForWeekly(file1);
                 getRemainingBalances(file1);
             }
+
+        }
+
+    }
+
+    public void importFromCompanySummery(String filePath) {
+
+        try {
+
+            org.apache.poi.hssf.record.crypto.Biff8EncryptionKey.setCurrentUserPassword("1350");
+            File file = new File(filePath);
+            Company company = checkCompany(file.getName().substring(0, file.getName().indexOf(".xls")));
+            HSSFWorkbook workbook = new HSSFWorkbook(new FileInputStream(file));
+            List<Row> rowList = IteratorUtils.toList(workbook.getSheetAt(0).rowIterator());
+            List<Invoice> invoices = new ArrayList<>();
+            List<RemainingBalance> remainingBalances = new ArrayList<>();
+
+            for (int i = 2; i < rowList.size(); i++) {
+                Row nextRow = rowList.get(i);
+                List<Cell> cellList = IteratorUtils.toList(nextRow.cellIterator());
+                Invoice invoice = new Invoice();
+                invoice.setCompany(company);
+                RemainingBalance remainingBalance = new RemainingBalance();
+                remainingBalance.setCompany(company);
+
+                for (int j = 0; j < cellList.size(); j++) {
+                    if (j < 6) {
+                        invoice = setInvoiceValues(invoice, cellList.get(j));
+                    } else if (j > 7) {
+                        remainingBalance = setRemainingBalancesValues(remainingBalance, cellList.get(j));
+                    }
+                }
+
+                if (invoice.getDate() != null) {
+                    invoiceService.save(invoice);
+                }
+
+                if (remainingBalance.getBalance_date() != null) {
+                    remainingBalanceService.save(remainingBalance);
+                }
+
+            }
+
+        } catch (IOException e) {
+
+            Logger.getLogger(ImportFromExcellService.class.getName()).log(Level.SEVERE, "Firmalar Dosyası Okunurken Bir Hata Oluştu", e);
+            throw new IllegalStateException("Firmalar Dosyası Okunurken Bir Hata Oluştu", e);
 
         }
 
@@ -336,7 +383,7 @@ public class ImportFromExcellService {
                     }
                 }
                 if (remainingBalance.getCompany() != null) {
-                    remainingBalance.setBalance_date(dateTimeFormatterUtil.convertToZonedDateTime(date,dtf));
+                    remainingBalance.setBalance_date(dateTimeFormatterUtil.convertToZonedDateTime(date, dtf));
                     remainingBalance = remainingBalanceService.save(remainingBalance);
                     remainingBalances.add(remainingBalance);
                 }
@@ -376,10 +423,89 @@ public class ImportFromExcellService {
         if (companies.size() > 0) {
             return companies.get(0);
         } else {
-            System.out.println("şöğĞŞÖ");
             return companyService.save(new Company(companyName));
         }
 
+    }
+
+    private Invoice setInvoiceValues(Invoice invoice, Cell cellVal) {
+
+        String data = "0.00";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd,MM,yyyy");
+
+        if (cellVal.getCellType() == Cell.CELL_TYPE_STRING) {
+            data = cellVal.getStringCellValue();
+        } else if (cellVal.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+            data = String.valueOf(cellVal.getNumericCellValue());
+        } else if (cellVal.getCellType() == Cell.CELL_TYPE_BLANK) {
+            return invoice;
+        }
+
+        switch (cellVal.getColumnIndex()) {
+            case 0: {
+                invoice.setDate(dateTimeFormatterUtil.convertToZonedDateTime(data, formatter));
+                break;
+            }
+            case 1: {
+                invoice.setDescription(data);
+                break;
+            }
+            case 3: {
+                if (data.contains(".")) {
+                    invoice.setPiece(Integer.valueOf(data.substring(0, data.indexOf("."))));
+                } else {
+                    invoice.setPiece(Integer.valueOf(data));
+                }
+
+                break;
+
+            }
+            case 4: {
+
+                invoice.setUnitPrice(BigDecimal.valueOf(Double.valueOf(data)));
+                break;
+
+            }
+            case 5: {
+                invoice.setTotalPrice(BigDecimal.valueOf(Double.valueOf(data)));
+                break;
+            }
+        }
+
+        return invoice;
+
+    }
+
+    private RemainingBalance setRemainingBalancesValues(RemainingBalance remainingBalance, Cell cellVal) {
+        String data = "";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd,MM,yyyy");
+
+        if (cellVal.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+            data = String.valueOf(cellVal.getNumericCellValue());
+        } else if (cellVal.getCellType() == Cell.CELL_TYPE_STRING) {
+            data = cellVal.getStringCellValue();
+        } else if (cellVal.getCellType() == Cell.CELL_TYPE_BLANK) {
+            return remainingBalance;
+        }
+
+        switch (cellVal.getColumnIndex()) {
+            case 8: {
+                remainingBalance.setBalance_date(dateTimeFormatterUtil.convertToZonedDateTime(data, formatter));
+                break;
+            }
+            case 9: {
+                remainingBalance.setDescription(data);
+                break;
+            }
+            case 11: {
+                remainingBalance.setPrice(BigDecimal.valueOf(Double.valueOf(data)));
+                break;
+            }
+        }
+
+        return remainingBalance;
     }
 
 }

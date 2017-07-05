@@ -6,6 +6,7 @@
 package Java8Test;
 
 import java.io.File;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -15,6 +16,7 @@ import org.junit.Test;
 public class SimpleTest {
 
     @Test
+    @Ignore
     public void testFileName() {
         
          File fileDir = new File("C:\\Users\\Faruk-pc\\Downloads\\05,09,2014\\BELGELER\\konfeksiyon\\ESKİLER\\yapılan işler\\YILLIK YAPILAN İŞLER\\2005'de  yapılan  iş\\2005 ARALIK");
