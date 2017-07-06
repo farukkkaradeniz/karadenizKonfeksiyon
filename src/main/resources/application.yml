@@ -10,6 +10,7 @@ spring:
         driver-class-name: org.postgresql.Driver
         platform: postgres
     jpa:
+#        open-in-view: false
         database: POSTGRESQL
         show-sql: true
         hibernate:

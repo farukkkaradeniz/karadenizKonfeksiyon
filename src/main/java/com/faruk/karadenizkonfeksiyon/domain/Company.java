@@ -1,5 +1,6 @@
 package com.faruk.karadenizkonfeksiyon.domain;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -38,8 +39,7 @@ public class Company implements Serializable{
     private String companyName;
     
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "company")
-    @Basic(fetch = FetchType.LAZY)
-    private List<Invoice> invoices = new ArrayList<>();
+    private Set<Invoice> invoices = new HashSet<>();
     
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "company")
     private Set<RemainingBalance> remainingBalances = new HashSet<>();
@@ -67,11 +67,11 @@ public class Company implements Serializable{
         this.companyName = companyName;
     }
 
-    public List<Invoice> getInvoices() {
+    public Set<Invoice> getInvoices() {
         return invoices;
     }
 
-    public void setInvoices(List<Invoice> invoices) {
+    public void setInvoices(Set<Invoice> invoices) {
         this.invoices = invoices;
     }
 

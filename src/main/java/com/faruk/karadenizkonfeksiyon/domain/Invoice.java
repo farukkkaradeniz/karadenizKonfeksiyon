@@ -1,9 +1,6 @@
 package com.faruk.karadenizkonfeksiyon.domain;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -33,6 +30,7 @@ public class Invoice implements Serializable{
     private Long id;
     
     @Column(name = "date")
+    @JsonIgnore
     private ZonedDateTime date;
     
     @Column(name = "description")

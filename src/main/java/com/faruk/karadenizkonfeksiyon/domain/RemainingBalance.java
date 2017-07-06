@@ -5,6 +5,7 @@
  */
 package com.faruk.karadenizkonfeksiyon.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -32,6 +33,7 @@ public class RemainingBalance implements Serializable {
     
     private BigDecimal price;
     
+    @JsonIgnore
     private ZonedDateTime balance_date;
 
     public ZonedDateTime getBalance_date() {

@@ -36,8 +36,8 @@ public class CompanyResource {
     
     @GetMapping("/company")
     public List<Company> getAllCompany(){
-    
-        return companyService.findAll();
+        List<Company> companies = companyService.findAll();
+        return companies;
         
     }
     
@@ -77,9 +77,13 @@ public class CompanyResource {
     }
     
     @GetMapping("/company/hibernate")
-    public List<Company> getHibernateData(){
-    
-        return genericDatabaseServiceImpl.findAll(Company.class);
+    public List<Company> getHibernateData(){ 
+       List<Company> companies = genericDatabaseServiceImpl.findAll(Company.class);
+        for (Company company : companies) {
+            company.setInvoices(null);
+            company.setRemainingBalances(null);
+        }
+        return companies;
         
     }
     

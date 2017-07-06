@@ -50,10 +50,10 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<Company> findAll() {
         List<Company> companies = companyRepository.findAll();
-//        for (Company company : companies) {
-//            company.getInvoices();
-//            company.getRemainingBalances();
-//        }
+        for (Company company : companies) {
+            company.setInvoices(null);
+            company.setRemainingBalances(null);
+        }
         return companies;
     }
 
@@ -70,9 +70,14 @@ public class CompanyServiceImpl implements CompanyService {
     
         Session session = entityManager.unwrap(Session.class);
         
-        List<Company> company =(List<Company>) session.createCriteria(Company.class).list();
+        List<Company> companies =(List<Company>) session.createCriteria(Company.class).list();
         
-        return company;
+        for (Company company : companies) {
+            company.setInvoices(null);
+            company.setRemainingBalances(null);
+        }
+        
+        return companies;
         
     }
 
